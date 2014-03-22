@@ -6,9 +6,9 @@ class DataStore(object):
 
     @classmethod
     def init(cls, app_config):
-        mongo_client = pymongo.MongoClient(app_config['DB_HOST'])
-        cls.db = mongo_client[app_config['DB_NAME']]
+        mongo_client = pymongo.MongoClient(app_config['FIT_ACTIVISTS_DB_HOST'])
+        cls.db = mongo_client[app_config['FIT_ACTIVISTS_DB_NAME']]
 
-        if app_config.get('DB_USER') and app_config.get('DB_PASSWORD'):
-            cls.db.authenticate(app_config['DB_USER'], app_config['DB_PASSWORD'])
+        if app_config.get('FIT_ACTIVISTS_DB_USER') and app_config.get('FIT_ACTIVISTS_DB_PASSWORD'):
+            cls.db.authenticate(app_config['FIT_ACTIVISTS_DB_USER'], app_config['FIT_ACTIVISTS_DB_PASSWORD'])
 

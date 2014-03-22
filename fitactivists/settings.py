@@ -11,10 +11,10 @@ class ProdConfig(Config):
     DEBUG = False
 
     # Database settings
-    DB_HOST = os.environ['DB_HOST']
-    DB_NAME = os.environ['DB_NAME']
-    DB_USER = os.environ['DB_USER']
-    DB_PASSWORD = os.environ['DB_PASSWORD']
+    DB_HOST = os.environ['FIT_ACTIVISTS_DB_HOST']
+    DB_NAME = os.environ['FIT_ACTIVISTS_DB_NAME']
+    DB_USER = os.environ['FIT_ACTIVISTS_DB_USER']
+    DB_PASSWORD = os.environ['FIT_ACTIVISTS_DB_PASSWORD']
 
 class DevConfig(Config):
     ENV = 'dev'
