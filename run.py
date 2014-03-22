@@ -9,5 +9,5 @@ if __name__ == '__main__':
     except:
         port = DEFAULT_PORT
 
-    main.app.run(port=port)
+    main.app.run(port=port, debug=True)
 
