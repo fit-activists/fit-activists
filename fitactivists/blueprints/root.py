@@ -67,3 +67,24 @@ def logout():
     logout_user()
     return redirect(url_for('root.login'))
 
+@blueprint.route('/do-create-account', methods=['post'])
+def do_create_account():
+    user_data = {
+        'email':         request.form.get('email', ''),
+        'password':      request.form.get('password', ''),
+        'first_name':    request.form.get('first_name', ''),
+        'last_name':     request.form.get('last_name', ''),
+        'date_of_birth': request.form.get('date_of_birth', ''),
+        'company':       request.form.get('company', ''),
+        'team':          request.form.get('team', ''),
+    }
+
+    user = User(user_data)
+
+    if not user.is_valid():
+        return 'Invalid account information', 500
+
+    user.create()
+
+    return redirect(url_for('root.index'))
+

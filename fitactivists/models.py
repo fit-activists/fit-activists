@@ -2,6 +2,7 @@
 import datetime
 
 # Third party libs
+import bcrypt
 from flask.ext.login import UserMixin
 import pymongo
 
@@ -36,5 +37,17 @@ class User(MongoRecord, UserMixin):
         return unicode(self['_id'])
 
     def verify_password(self, password):
+        return bcrypt.hashpw(str(password), str(self['password'])) == self['password']
+
+    def is_valid(self):
+        if '@' not in self.data.get('email', ''):
+            return False
+
         return True
+
+    def create(self):
+        self['_id'] = self['email']
+        self['password'] = bcrypt.hashpw(str(self['password']), bcrypt.gensalt())
+        self['created'] = datetime.datetime.utcnow()
+        _id = DataStore.db.users.insert(self.data)
 

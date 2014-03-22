@@ -2,11 +2,15 @@ Flask==0.10.1
 Flask-Login==0.2.9
 Flask-SSLify==0.1.4
 Jinja2==2.7.1
+MarkupSafe==0.19
 Werkzeug==0.9.4
+bcrypt==1.0.2
+cffi==0.8.2
 gevent==1.0
 greenlet==0.4.1
 gunicorn==18.0
 itsdangerous==0.23
 newrelic==2.16.0.12
+pycparser==2.10
 pymongo==2.6.3
 wsgiref==0.1.2
