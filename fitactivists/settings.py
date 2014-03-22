@@ -21,6 +21,8 @@ class DevConfig(Config):
     DEBUG = True
 
     # Database settings
-    FIT_ACTIVISTS_DB_HOST = 'localhost:27017'
-    FIT_ACTIVISTS_DB_NAME = 'fit_activists'
+    FIT_ACTIVISTS_DB_HOST = os.environ['FIT_ACTIVISTS_DB_HOST']
+    FIT_ACTIVISTS_DB_NAME = os.environ['FIT_ACTIVISTS_DB_NAME']
+    FIT_ACTIVISTS_DB_USER = os.environ['FIT_ACTIVISTS_DB_USER']
+    FIT_ACTIVISTS_DB_PASSWORD = os.environ['FIT_ACTIVISTS_DB_PASSWORD']
 
