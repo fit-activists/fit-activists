@@ -27,6 +27,10 @@ blueprint = Blueprint('root',
 def index():
     return render_template('index.html')
 
+@blueprint.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 @blueprint.route('/login')
 def login():
     if current_user.is_active():
