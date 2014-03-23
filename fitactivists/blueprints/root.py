@@ -71,16 +71,16 @@ def logout():
     logout_user()
     return redirect(url_for('root.login'))
 
-@blueprint.route('/do-create-account', methods=['post'])
-def do_create_account():
+@blueprint.route('/do-signup', methods=['post'])
+def do_signup():
     user_data = {
         'email':         request.form.get('email', ''),
         'password':      request.form.get('password', ''),
         'first_name':    request.form.get('first_name', ''),
         'last_name':     request.form.get('last_name', ''),
         'date_of_birth': request.form.get('date_of_birth', ''),
-        'company':       request.form.get('company', ''),
-        'team':          request.form.get('team', ''),
+        'company_name':  request.form.get('company_name', ''),
+        'team_name':     request.form.get('team_name', ''),
     }
 
     user = User(user_data)
