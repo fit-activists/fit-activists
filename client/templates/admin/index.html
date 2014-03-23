@@ -1,0 +1,139 @@
+{% extends 'admin/base.html' %}
+
+{% block css %}
+<style>
+    .page-header {
+        margin-top: 20px;
+    }
+    .glyphicon-chevron-left,
+    .glyphicon-chevron-right {
+        top: 2px;
+    }
+    .month-pager {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .month-pager .current-month {
+        font-size: 20px;
+        margin: 0 5px;
+        padding: 6px 12px;
+    }
+    .month-pager .month-pager-btn {
+        color: #428bca;
+        margin-top: -7px;
+    }
+    .highcharts-drilldown-data-label > text {
+        text-decoration: none !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h1>Hackfit Inc.&nbsp;&nbsp;<small>Company Dashboard</small></h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="month-pager">
+            <button type="button" class="btn btn-xs btn-default month-pager-btn">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <span class="current-month">March 2014</span>
+            <button type="button" class="btn btn-xs btn-default month-pager-btn">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div id="engagement-chart">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+(function() {
+    $(document).ready(function() {
+        Highcharts.setOptions({
+            colors: ['#ff0f4b', '#ffeb00', '#60cdff']
+        });
+
+        var drilldown_data = [
+            {id: 'Finance', name: 'Finance', data: [["Mar 1", 89], ["Mar 2", 92], ["Mar 3", 93], ["Mar 4", 92], ["Mar 5", 97], ["Mar 6", 86], ["Mar 7", 94], ["Mar 8", 93], ["Mar 9", 88], ["Mar 10", 94], ["Mar 11", 91], ["Mar 12", 86], ["Mar 13", 98], ["Mar 14", 88], ["Mar 15", 97], ["Mar 16", 96], ["Mar 17", 95], ["Mar 18", 95], ["Mar 19", 86], ["Mar 20", 86], ["Mar 21", 90], ["Mar 22", 88], ["Mar 23", 91]]},
+            {id: 'Human Resources', name: 'Human Resources', data: [["Mar 1", 98], ["Mar 2", 92], ["Mar 3", 94], ["Mar 4", 90], ["Mar 5", 96], ["Mar 6", 91], ["Mar 7", 92], ["Mar 8", 93], ["Mar 9", 95], ["Mar 10", 85], ["Mar 11", 94], ["Mar 12", 88], ["Mar 13", 89], ["Mar 14", 91], ["Mar 15", 90], ["Mar 16", 98], ["Mar 17", 90], ["Mar 18", 98], ["Mar 19", 85], ["Mar 20", 98], ["Mar 21", 88], ["Mar 22", 89], ["Mar 23", 88]]},
+            {id: 'Engineering', name: 'Engineering', data: [["Mar 1", 88], ["Mar 2", 85], ["Mar 3", 90], ["Mar 4", 90], ["Mar 5", 86], ["Mar 6", 96], ["Mar 7", 88], ["Mar 8", 94], ["Mar 9", 97], ["Mar 10", 93], ["Mar 11", 88], ["Mar 12", 96], ["Mar 13", 85], ["Mar 14", 91], ["Mar 15", 91], ["Mar 16", 85], ["Mar 17", 86], ["Mar 18", 85], ["Mar 19", 98], ["Mar 20", 89], ["Mar 21", 98], ["Mar 22", 92], ["Mar 23", 96]]},
+        ];
+
+        var averages = [];
+        $.each(drilldown_data, function(i, element) {
+            var data = element.data;
+            var sum = 0;
+            $.each(data, function(i, datapoint) {
+                sum += datapoint[1];
+            });
+            averages.push(sum/data.length);
+        });
+
+        var team_data = [
+            {name: 'Finance', drilldown: 'Finance', y: averages[0]},
+            {name: 'Human Resources', drilldown: 'Human Resources', y: averages[1]},
+            {name: 'Engineering', drilldown: 'Engineering', y: averages[2]},
+        ];
+        $('#engagement-chart').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Engagement by Department',
+                style: {
+                    fontSize: '24px',
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    format: '{value}%',
+                },
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '',
+            },
+            series: [{
+                name: 'Engagement',
+                colorByPoint: true,
+                data: team_data,
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '18px',
+                    },
+                    format: '{point.y:,.1f}%'
+                }
+            }],
+            drilldown: {
+                series: drilldown_data
+            },
+        });
+    });
+})();
+</script>
+{% endblock %}

@@ -8,6 +8,7 @@ from .extensions import login_manager
 from .models import User
 from .blueprints import root
 from .blueprints import api
+from .blueprints import admin
 
 def create_app(config_object):
     app = Flask(__name__)
@@ -29,6 +30,7 @@ def register_extensions(app):
 def register_blueprints(app):
     app.register_blueprint(root.blueprint)
     app.register_blueprint(api.blueprint)
+    app.register_blueprint(admin.blueprint)
 
 @login_manager.user_loader
 def load_user(user_id):
