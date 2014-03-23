@@ -1,3 +1,15 @@
 <html>
-    <body>sup</body>
+    <body>
+        <form action="/api/reports" method="post">
+            <label for="activity">I was very active</label>
+            <input id="activity" type="range" name="activity" min="1" max="10" step="1">
+            <label for="nutrition">I ate and drank nutritiously all day</label>
+            <input id="nutrition" type="range" name="nutrition" min="1" max="10" step="1">
+            <label for="stress">My day was stress free</label>
+            <input id="stress" type="range" name="stress" min="1" max="10" step="1">
+            <label for="happiness">Overall, I had a super awesome day</label>
+            <input id="happiness" type="range" name="happiness" min="1" max="10" step="1">
+            <button type="submit">Send Report</button>
+        </form>
+    </body>
 </html>
