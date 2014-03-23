@@ -13,4 +13,7 @@ itsdangerous==0.23
 newrelic==2.16.0.12
 pycparser==2.10
 pymongo==2.6.3
+sendgrid==0.3.5
+smtpapi==0.1.1
+unittest2==0.5.1
 wsgiref==0.1.2

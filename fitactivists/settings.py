@@ -6,6 +6,9 @@ class Config(object):
     APP_DIR = os.path.abspath(os.path.dirname(__file__)) # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
+    SENDGRID_USERNAME = os.getenv('SENDGRID_USERNAME', '')
+    SENDGRID_PASSWORD = os.getenv('SENDGRID_PASSWORD', '')
+
 class ProdConfig(Config):
     ENV = 'prod'
     DEBUG = False
