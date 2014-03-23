@@ -36,11 +36,15 @@ class MongoRecord(object):
 
     def create(self):
         self['_id'] = uuid.uuid4().hex[:10]
-        self['created'] = datetime.datetime.utcnow()
+        self['created'] = datetime.datetime.now()
         _id = DataStore.db[self.__class__.COLLECTION].insert(self.data)
 
     def update(self, updated_data):
         self.data.update(updated_data)
+        data_minus_id = self.data.copy()
+        data_minus_id.pop('_id', None)
+        DataStore.db[self.__class__.COLLECTION].update({'_id': self['_id']}, {'$set': data_minus_id})
+        return self.data
 
 class User(MongoRecord, UserMixin):
     COLLECTION = 'users'
@@ -108,7 +112,7 @@ class User(MongoRecord, UserMixin):
     def create(self):
         self['_id'] = self['email']
         self['password'] = bcrypt.hashpw(str(self['password']), bcrypt.gensalt())
-        self['created'] = datetime.datetime.utcnow()
+        self['created'] = datetime.datetime.now()
 
         # Retrieve the user's company from the given company name
         # Create the company record if it doesn't exist
@@ -139,6 +143,12 @@ class User(MongoRecord, UserMixin):
 
         _id = DataStore.db[self.__class__.COLLECTION].insert(self.data)
 
+    def get_reports(self):
+        return Report.get_all_from_user(self['_id'])
+
+    def get_report_by_date(self, date):
+        return Report.get_by_date(self['_id'], date)
+
 class Company(MongoRecord):
     COLLECTION = 'companies'
 
@@ -168,4 +178,30 @@ class Team(MongoRecord):
     @classmethod
     def normalize_team_name(cls, team_name):
         return team_name.strip().lower()
+
+class Report(MongoRecord):
+    COLLECTION = 'reports'
+
+    @classmethod
+    def get_by_date(cls, user_id, date):
+        data = DataStore.db[cls.COLLECTION].find_one({'user_id': user_id, 'date': date})
+        if data:
+            return Report(data)
+        return None
+
+    @classmethod
+    def get_all_from_user(cls, user_id):
+        reports = DataStore.db[cls.COLLECTION].find({'user_id': user_id})
+        if not reports:
+            return []
+        return [Report(data) for data in reports]
+
+    def is_valid(self):
+        return True
+
+    def create(self):
+        self['_id'] = uuid.uuid4().hex[:10]
+        self['created'] = datetime.datetime.now()
+        self['date'] = self['created'].replace(hour=0, minute=0, second=0, microsecond=0)
+        _id = DataStore.db[self.__class__.COLLECTION].insert(self.data)
 
