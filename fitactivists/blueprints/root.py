@@ -92,3 +92,8 @@ def do_signup():
 
     return redirect(url_for('root.index'))
 
+@blueprint.route('/charity')
+@login_required
+def charity():
+    return render_template('charity.html')
+
