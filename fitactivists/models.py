@@ -70,6 +70,41 @@ class User(MongoRecord, UserMixin):
 
         return True
 
+    def get_validation_errors(self):
+        errors = []
+
+        # Email
+        if not self.data.get('email'):
+            errors.append('Email cannot be blank')
+        elif '@' not in self.data.get('email', ''):
+            errors.append('Invalid email')
+
+        # Password
+        if not self.data.get('password'):
+            errors.append('Password cannot be blank')
+
+        # First name
+        if not self.data.get('first_name'):
+            errors.append('First name cannot be blank')
+
+        # Last name
+        if not self.data.get('last_name'):
+            errors.append('Last name cannot be blank')
+
+        # Birthday
+        if not self.data.get('date_of_birth'):
+            errors.append('Birthday cannot be blank')
+
+        # Company
+        if not self.data.get('company_name'):
+            errors.append('Company cannot be blank')
+
+        # Team
+        if not self.data.get('team_name'):
+            errors.append('Team cannot be blank')
+
+        return errors
+
     def create(self):
         self['_id'] = self['email']
         self['password'] = bcrypt.hashpw(str(self['password']), bcrypt.gensalt())

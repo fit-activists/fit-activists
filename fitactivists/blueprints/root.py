@@ -86,7 +86,7 @@ def do_signup():
     user = User(user_data)
 
     if not user.is_valid():
-        return 'Invalid account information', 500
+        return redirect(url_for('root.signup'))
 
     user.create()
 
