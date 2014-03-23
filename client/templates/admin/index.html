@@ -2,8 +2,24 @@
 
 {% block css %}
 <style>
+    body {
+        background: url('/static/img/bg.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .panel .row {
+        background: white;
+    }
     .page-header {
         margin-top: 20px;
+    }
+    .page-header h1 {
+        color: white;
+    }
+    .page-header small {
+        color: white;
     }
     .glyphicon-chevron-left,
     .glyphicon-chevron-right {
@@ -37,23 +53,27 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-12">
-        <div class="month-pager">
-            <button type="button" class="btn btn-xs btn-default month-pager-btn">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </button>
-            <span class="current-month">March 2014</span>
-            <button type="button" class="btn btn-xs btn-default month-pager-btn">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </button>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="month-pager">
+                    <button type="button" class="btn btn-xs btn-default month-pager-btn">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </button>
+                    <span class="current-month">March 2014</span>
+                    <button type="button" class="btn btn-xs btn-default month-pager-btn">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-xs-12">
-        <div id="engagement-chart">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="engagement-chart">
+                </div>
+            </div>
         </div>
     </div>
 </div>
