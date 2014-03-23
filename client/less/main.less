@@ -118,3 +118,48 @@ p {
         cursor: pointer;
     }
 }
+
+.charity-wrap {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    text-align: center;
+
+    h1 {
+        font-size: 48px;
+        margin-top: 20px;
+    }
+
+    .donate-btn {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        // font-size: 24px;
+        margin: 10px auto;
+        width: 600px;
+        height: 120px;
+        cursor: pointer;
+        background-color: black;
+        // color: white;
+        border-radius: 5px;
+
+        &:nth-of-type(2) {
+            background-color: white;
+        }
+
+        .charity-logo {
+            padding-top: 120px;
+            background-repeat: no-repeat;
+            background-size: auto auto;
+            background-position: center center;
+        }
+        .charity-logo-1 {
+            background-image: url(/static/img/openhand-logo.png);
+        }
+        .charity-logo-2 {
+            background-image: url(/static/img/canfit-logo.gif);
+        }
+        .charity-logo-3 {
+            background-image: url(/static/img/keen-logo.png);
+        }
+    }
+}
