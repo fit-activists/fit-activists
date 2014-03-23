@@ -19,7 +19,7 @@ from fitactivists.models import User
 
 blueprint = Blueprint('root',
                       __name__,
-                      static_folder='../../client/static',
+                      static_folder='../static',
                       template_folder='../../client/templates')
 
 @blueprint.route('/')
