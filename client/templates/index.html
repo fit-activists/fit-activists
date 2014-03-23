@@ -2,18 +2,54 @@
     <head>
         <title>Fit Activists | Your Wellness Dashboard</title>
         <link rel="stylesheet" href="static/css/main.css">
+        <link rel="" href="static/fonts/marker_felt.ttf">
     </head>
     <body>
-        <form action="/api/reports/add" method="post">
-            <label for="activity">I was very active</label>
-            <input id="activity" type="range" name="activity" min="1" max="10" step="1">
-            <label for="nutrition">I ate and drank nutritiously all day</label>
-            <input id="nutrition" type="range" name="nutrition" min="1" max="10" step="1">
-            <label for="stress">My day was stress free</label>
-            <input id="stress" type="range" name="stress" min="1" max="10" step="1">
-            <label for="happiness">Overall, I had a super awesome day</label>
-            <input id="happiness" type="range" name="happiness" min="1" max="10" step="1">
-            <button type="submit">Send Report</button>
-        </form>
+        <div class="container">
+            <div class="form-wrap">
+                <form action="/api/reports/add" method="post">
+                    <div class="form-field-group">
+                        <div class="form-field">
+                            <label for="activity">I was very active</label>
+                            <div class="slider-wrap">
+                                <input id="activity" type="range" name="activity" min="1" max="10" step="1" value="1">
+                                <div class="slider-numbers">1 2 3 4 5 6 7 8 9 10</div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="nutrition">I ate and drank nutritiously all day</label>
+                            <div class="slider-wrap">
+                                <input id="nutrition" type="range" name="nutrition" min="1" max="10" step="1" value="1">
+                                <div class="slider-numbers">1 2 3 4 5 6 7 8 9 10</div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="stress">My day was stress free</label>
+                            <div class="slider-wrap">
+                                <input id="stress" type="range" name="stress" min="1" max="10" step="1" value="1">
+                                <div class="slider-numbers">1 2 3 4 5 6 7 8 9 10</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field-group">
+                        <div class="form-field">
+                            <label for="happiness">Overall, I had a super awesome day</label>
+                            <div class="slider-wrap">
+                                <input id="happiness" type="range" name="happiness" min="1" max="10" step="1" value="1">
+                                <div class="slider-numbers">1 2 3 4 5 6 7 8 9 10</div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="goodthing">Name one good thing that happened yesterday</label>
+                            <div class="textarea-wrap">
+                                <textarea>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Send Report</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
