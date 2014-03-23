@@ -2,16 +2,49 @@
   font-family: "Marker Felt";
   src: url(static/fonts/marker_felt.ttf) format("truetype");
 }
+body {
+  background: url(/static/img/earth_picture.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
 .container {
+  padding: 50px;
   width: 80%;
   margin: auto;
   font-family: "Marker Felt";
 }
+.header-bar {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+.header-bar p {
+  padding: 10px 10px 0px 10px;
+  text-align: left;
+  font-size: 32px;
+  margin: 0;
+}
+h1 {
+  text-align: center;
+}
+p {
+  font-size: 20px;
+  text-align: center;
+}
 .form-wrap {
+  position: relative;
   width: 600px;
   margin: auto;
 }
+.form-wrap .form-field-group {
+  border-radius: 2px;
+}
 .form-wrap .form-field-group .form-field {
+  box-sizing: border-box;
   background-color: #bee8f8;
   padding: 10px 20px;
   min-height: 80px;
@@ -30,11 +63,15 @@
 }
 .form-wrap .form-field-group .form-field .slider-numbers {
   text-align: center;
-  word-spacing: 51px;
+  word-spacing: 47px;
   cursor: default;
 }
 .form-wrap .form-field-group .form-field:first-of-type {
   margin-top: 10px;
+  border-radius: 5px 5px 0 0;
+}
+.form-wrap .form-field-group .form-field:last-of-type {
+  border-radius: 0 0 5px 5px;
 }
 .form-wrap .form-field-group .form-field:nth-child(n) {
   border-top: 1px solid gray;
@@ -48,4 +85,15 @@
 .form-wrap .form-field-group .form-field .textarea-wrap textarea {
   width: 100%;
   height: 100px;
+  border: none;
+}
+.form-wrap button {
+  border-radius: 5px;
+  border-color: #D4557E;
+  background-image: linear-gradient(#f18e99, D4557E);
+  float: right;
+  height: 30px;
+  width: 130px;
+  margin-top: 10px;
+  color: #DDDDDD;
 }

@@ -6,6 +6,14 @@
     </head>
     <body>
         <div class="container">
+            <div class="header-bar">
+                <p>Fit Activists</p>
+            </div>
+            <h1 class="page-title">Your Wellness Tracker</h1>
+            <p class="instructions">
+                Reflect on your day yesterday. Rate how true these statements are.
+                [10 being absolutely true. 1 being not true at all.]
+            </p>
             <div class="form-wrap">
                 <form action="/api/reports/add" method="post">
                     <div class="form-field-group">
@@ -42,8 +50,7 @@
                         <div class="form-field">
                             <label for="goodthing">Name one good thing that happened yesterday</label>
                             <div class="textarea-wrap">
-                                <textarea>
-                                </textarea>
+                                <textarea></textarea>
                             </div>
                         </div>
                     </div>
